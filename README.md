@@ -1,7 +1,5 @@
 # HSMentor
 
-Multipurpose app developed at HackerSchool aimed to help new students at the Instituto Superior Técnico have a smoother adaptation. 
-
 ## Flutter resources
 
 A few resources to get you started if this is your first Flutter project:

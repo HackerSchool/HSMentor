@@ -1,4 +1,12 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+
+import 'models/aula.dart';
+import 'models/avaliacao.dart';
+
+import 'package:hsmentor/components/aulas_tile.dart';
+import 'package:hsmentor/components/avaliacoes_tile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +15,182 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("hsmentor",
+              style: TextStyle(
+                  fontFamily: "Origami", color: Colors.white, fontSize: 28)),
+          centerTitle: true,
+          backgroundColor: Color(0xFF6BBA75),
+          elevation: 0,
+          leading: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.settings, size: 35, color: Colors.white)),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.person,
+                  size: 35,
+                  color: Colors.white,
+                ))
           ],
         ),
+        body: Column(children: [
+          // search bar
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 25),
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.symmetric(horizontal: 25),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Color(0xFF6BBA75), width: 1),
+                    borderRadius: BorderRadius.circular(100)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Estou à procura de...',
+                        style: TextStyle(color: Colors.grey[600])),
+                    Icon(Icons.search, color: Color(0xFF6BBA75)),
+                  ],
+                ),
+              )),
+
+          // Title "Próximas aulas"
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                children: [
+                  Text("Próximas Aulas ⏰",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
+                ],
+              )
+          ),
+        
+          const SizedBox(height: 10),
+
+          // Next classes list
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                Aula aula = Aula(disciplina: "CDI-III", tipo: "T", inicio: DateTime(2024, 2, 25, 10, 0), fim: DateTime(2024, 2, 25, 11, 0), sala: "P01");
+                return AulasTile(
+                  aula: aula,
+                );
+              }
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          // Title "Próximas Avaliações"
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                children: [
+                  Text("Próximas Avaliações 📝",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
+                ],
+              )
+          ),
+
+          const SizedBox(height: 10),
+
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                Avaliacao avaliacao = Avaliacao(disciplina: "MO", nome: "Exame 1ª Época", inicio: DateTime(2024, 2, 25, 10, 0), fim: DateTime(2024, 2, 25, 11, 0), sala: "P01");
+                return AvaliacoesTile(
+                  avaliacao: avaliacao,
+                );
+              }
+            ),
+          ),
+        
+          const SizedBox(height: 10),
+
+          // Title "Últimas Notícias"
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                children: [
+                  Text("Últimas Notícias 📰",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
+                ],
+              )
+          ),
+
+        ]),
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 2,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Color(0xFF6BBA75),
+            unselectedItemColor: Colors.grey[40],
+            selectedItemColor: Colors.white,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.question_mark),
+                  label: "FAQ",
+                  activeIcon: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Icon(Icons.question_mark,
+                              color: Color(0xFF6BBA75))))),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.restaurant),
+                  label: "Refeições",
+                  activeIcon: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Icon(Icons.restaurant,
+                              color: Color(0xFF6BBA75))))),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: "Home",
+                  activeIcon: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Icon(Icons.home, color: Color(0xFF6BBA75))))),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.navigation),
+                  label: "Navegação",
+                  activeIcon: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Icon(Icons.navigation,
+                              color: Color(0xFF6BBA75))))),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.newspaper),
+                  label: "Notícias",
+                  activeIcon: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child:
+                              Icon(Icons.newspaper, color: Color(0xFF6BBA75)))))
+            ]),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

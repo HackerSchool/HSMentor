@@ -12,12 +12,12 @@ class AulasTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10, left: 25, right: 25),
+      margin: EdgeInsets.only(bottom: 15, left: 25, right: 25),
       width: 200,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Color(0xFF6BBA75), width: 1),
-        borderRadius: BorderRadius.circular(100)
+        borderRadius: BorderRadius.circular(20)
       ),
       child: 
         Padding (padding: EdgeInsets.only(left: 10),

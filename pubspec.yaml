@@ -39,6 +39,7 @@ dependencies:
   introduction_screen: ^3.1.14
   google_nav_bar: ^5.0.6
   shared_preferences: ^2.2.2
+  liquid_pull_to_refresh: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hsmentor/pages/pagina_principal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:hsmentor/onboarding_screen.dart';
-import 'package:hsmentor/pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: onboarding ? Home() : OnBoardingScreen(),
+      home: onboarding ? PaginaPrincipal() : OnBoardingScreen(),
     );
   }
 }

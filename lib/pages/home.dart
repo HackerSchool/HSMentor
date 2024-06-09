@@ -23,33 +23,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     var routes = [FAQ(), Refeicoes(), Home(), Navegacao(), NoticiasFeed()];
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("hsmentor",
-              style: TextStyle(
-                  fontFamily: "Origami", color: Colors.white, fontSize: 28)),
-          centerTitle: true,
-          backgroundColor: Color(0xFF6BBA75),
-          elevation: 0,
-          leading: Padding(
-              padding: EdgeInsets.only(left: 5),
-              child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.settings, size: 35, color: Colors.white))),
-          actions: [
-            Padding(
-                padding: EdgeInsets.only(right: 5),
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.person,
-                      size: 35,
-                      color: Colors.white,
-                    )))
-          ],
-        ),
+    return Scaffold(
         body: SingleChildScrollView(
           child: Column(children: [
             // search bar
@@ -179,48 +153,6 @@ class Home extends StatelessWidget {
             ),
           ]),
         ),
-        bottomNavigationBar: Container(
-          color: Color(0xFF6BBA75),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-            child: GNav(
-              gap: 6,
-              selectedIndex: 2,
-              onTabChange: (index) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => routes[index]));
-              },
-              backgroundColor: Color(0xFF6BBA75),
-              color: Colors.white,
-              activeColor: Color(0xFF6BBA75),
-              tabBackgroundColor: Colors.white,
-              padding: EdgeInsets.all(16),
-              tabs: const [
-                GButton(
-                  icon: Icons.question_mark,
-                  text: "FAQ",
-                ),
-                GButton(
-                  icon: Icons.restaurant,
-                  text: "Refeições",
-                ),
-                GButton(
-                  icon: Icons.home,
-                  text: "Home",
-                ),
-                GButton(
-                  icon: Icons.navigation,
-                  text: "Navegação",
-                ),
-                GButton(
-                  icon: Icons.newspaper,
-                  text: "Notícias",
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+      );
   }
 }

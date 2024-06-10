@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hsmentor/components/barra_navegacao.dart';
+import 'package:hsmentor/pages/definicoes.dart';
 import 'package:hsmentor/pages/faq.dart';
 import 'package:hsmentor/pages/home.dart';
 import 'package:hsmentor/pages/navegacao.dart';
@@ -40,7 +40,9 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
         leading: Padding(
             padding: EdgeInsets.only(left: 5),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Definicoes()));
+                },
                 icon: Icon(Icons.settings, size: 35, color: Colors.white))),
         actions: [
           Padding(

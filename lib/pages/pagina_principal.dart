@@ -25,7 +25,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   }
 
   final List<Widget> routes = [FAQ(), Refeicoes(), Home(), Navegacao(), NoticiasFeed()];
-  final List<String> titles = ["faq", "refeições", "hsmentor", "navegação", "notícias"];
+  final List<String> titles = ["faq", "refeicoes", "hsmentor", "navegacao", "noticias"];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
             padding: EdgeInsets.only(left: 5),
             child: IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Definicoes()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DefinicoesPagina()));
                 },
                 icon: Icon(Icons.settings, size: 35, color: Colors.white))),
         actions: [

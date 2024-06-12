@@ -17,7 +17,7 @@ class DefinicoesPagina extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: const Text("definicoes",
+        title: const Text("definições",
             style: TextStyle(
                 fontFamily: "Origami", color: Color(0xFF6BBA75), fontSize: 28)),
         centerTitle: true,
@@ -29,12 +29,14 @@ class DefinicoesPagina extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ContaPagina()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ContaPagina()));
             },
             child: SizedBox(
               width: double.infinity,
               child: Container(
-                padding: const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
+                padding:
+                    const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
                 height: 60,
                 decoration: const BoxDecoration(
                   border: Border(
@@ -44,17 +46,18 @@ class DefinicoesPagina extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text("Conta", style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
+                child: const Text("Conta",
+                    style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
               ),
             ),
           ),
-
           GestureDetector(
             onTap: () {},
             child: SizedBox(
               width: double.infinity,
               child: Container(
-                padding: const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
+                padding:
+                    const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
                 height: 60,
                 decoration: const BoxDecoration(
                   border: Border(
@@ -64,17 +67,18 @@ class DefinicoesPagina extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text("Segurança e acesso à conta", style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
+                child: const Text("Segurança e acesso à conta",
+                    style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
               ),
             ),
           ),
-
           GestureDetector(
             onTap: () {},
             child: SizedBox(
               width: double.infinity,
               child: Container(
-                padding: const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
+                padding:
+                    const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
                 height: 60,
                 decoration: const BoxDecoration(
                   border: Border(
@@ -84,17 +88,18 @@ class DefinicoesPagina extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text("Sincronização com IST ID", style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
+                child: const Text("Sincronização com IST ID",
+                    style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
               ),
             ),
           ),
-
           GestureDetector(
             onTap: () {},
             child: SizedBox(
               width: double.infinity,
               child: Container(
-                padding: const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
+                padding:
+                    const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
                 height: 60,
                 decoration: const BoxDecoration(
                   border: Border(
@@ -104,17 +109,18 @@ class DefinicoesPagina extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text("Notificações", style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
+                child: const Text("Notificações",
+                    style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
               ),
             ),
           ),
-
           GestureDetector(
             onTap: () {},
             child: SizedBox(
               width: double.infinity,
               child: Container(
-                padding: const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
+                padding:
+                    const EdgeInsets.only(left: 25.0, top: 16.0, bottom: 16.0),
                 height: 60,
                 decoration: const BoxDecoration(
                   border: Border(
@@ -124,7 +130,8 @@ class DefinicoesPagina extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text("Display e Linguagem", style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
+                child: const Text("Display e Linguagem",
+                    style: TextStyle(color: Color(0xFF6BBA75), fontSize: 20)),
               ),
             ),
           ),

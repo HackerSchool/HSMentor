@@ -15,7 +15,6 @@ class PaginaPrincipal extends StatefulWidget {
 }
 
 class _PaginaPrincipalState extends State<PaginaPrincipal> {
-
   int _selectedIndex = 2;
 
   void navigateBottomBar(int index) {
@@ -24,8 +23,20 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
     });
   }
 
-  final List<Widget> routes = [FAQ(), Refeicoes(), Home(), Navegacao(), NoticiasFeed()];
-  final List<String> titles = ["faq", "refeicoes", "hsmentor", "navegacao", "noticias"];
+  final List<Widget> routes = [
+    FAQ(),
+    Refeicoes(),
+    Home(),
+    Navegacao(),
+    NoticiasFeed()
+  ];
+  final List<String> titles = [
+    "faq",
+    "refeições",
+    "hsmentor",
+    "navegação",
+    "notícias"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +52,10 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
             padding: EdgeInsets.only(left: 5),
             child: IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => DefinicoesPagina()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DefinicoesPagina()));
                 },
                 icon: Icon(Icons.settings, size: 35, color: Colors.white))),
         actions: [
@@ -56,9 +70,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                   )))
         ],
       ),
-
       body: routes[_selectedIndex],
-
       bottomNavigationBar: BarraNavegacao(
         onTabChange: (index) => navigateBottomBar(index),
       ),

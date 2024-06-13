@@ -69,6 +69,8 @@ flutter:
     - assets/Directions-pana.png
     - assets/Questions-pana.png
     - assets/Welcome-pana.png
+    - assets/cantina_social.jpg
+    - assets/cantina_pingo_doce.jpg
 
   fonts:
     - family: Origami

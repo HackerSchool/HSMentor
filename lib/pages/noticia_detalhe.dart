@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:hsmentor/models/noticia.dart';
 
-class NoticiaPage extends StatefulWidget {
+class NoticiaDetail extends StatefulWidget {
   final Noticia noticia;
 
-  const NoticiaPage({
+  const NoticiaDetail({
     super.key,
     required this.noticia,
   });
 
   @override
-  State<NoticiaPage> createState() => _NoticiaPageState();
+  State<NoticiaDetail> createState() => _NoticiaDetailState();
 }
 
-class _NoticiaPageState extends State<NoticiaPage> {
+class _NoticiaDetailState extends State<NoticiaDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("hsmentor",
+        title: Text("Notícia",
             style: TextStyle(
-                fontFamily: "Origami", color: Colors.white, fontSize: 28)),
+                fontFamily: "Origami", color: Color(0xFF6BBA75), fontSize: 28)),
         centerTitle: true,
-        backgroundColor: Color(0xFF6BBA75),
-        elevation: 0,
+        backgroundColor: Colors.white,
+        elevation: 7,
+        shadowColor: const Color(0xFF6BBA75),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon:
-                Icon(Icons.arrow_back_ios_new, size: 30, color: Colors.white)),
+            icon: Icon(Icons.arrow_back_ios_new,
+                size: 30, color: Color(0xFF6BBA75))),
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -75,7 +75,7 @@ class NoticiasFeed extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    NoticiaPage(noticia: noticia))),
+                                    NoticiaDetail(noticia: noticia))),
                       );
                     }),
               ),

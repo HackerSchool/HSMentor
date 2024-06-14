@@ -102,10 +102,9 @@ class _RefeicaoDetailState extends State<RefeicaoDetail> {
                           ),
                         ),
                       ),
-                      child: Flexible(
-                          child: Text("Inclui opções: " + opcoesToString(),
+                      child: Text("Inclui opções: " + opcoesToString(),
                               style: TextStyle(
-                                  color: Color(0xFF6BBA75), fontSize: 16))),
+                                  color: Color(0xFF6BBA75), fontSize: 16)),
                     ),
                   ),
                   const SizedBox(height: 20),

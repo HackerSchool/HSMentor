@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_html/flutter_html.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FaqTile extends StatefulWidget {
-  const FaqTile({super.key});
+  final String title;
+  final String fileName;
+
+  const FaqTile({super.key, required this.title, required this.fileName});
 
   @override
   State<FaqTile> createState() => _FaqTileState();
@@ -10,11 +15,33 @@ class FaqTile extends StatefulWidget {
 
 class _FaqTileState extends State<FaqTile> {
   bool _isExpanded = false;
+  String _htmlContent = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadHtmlFile();
+  }
+
+  Future<void> _loadHtmlFile() async {
+    final String content = await rootBundle.loadString("assets/faqHTML/" + widget.fileName);
+    setState(() {
+      _htmlContent = content;
+    });
+  } 
+
+  void _launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 40, left: 10, right: 10),
+      margin: const EdgeInsets.only(top: 40, left: 10, right: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: const Border(
@@ -41,18 +68,18 @@ class _FaqTileState extends State<FaqTile> {
           dividerColor: Colors.transparent,
         ),
         child: ExpansionTile(
-            title: const Text(
-                "Pergunta",
-                style: TextStyle(
+            title: Text(
+                widget.title,
+                style: const TextStyle(
                   color: Color(0xFF6BBA75), 
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
             leading: Icon( 
-              _isExpanded ? Icons.arrow_drop_down_outlined : Icons.arrow_drop_up_outlined,
+              _isExpanded ? Icons.arrow_drop_up_outlined : Icons.arrow_drop_down_outlined,
               size: 30,
-              color: Color(0xFF6BBA75),
+              color: const Color(0xFF6BBA75),
              ),
             onExpansionChanged: (bool expanded) {
               setState(() => _isExpanded = expanded);
@@ -63,12 +90,21 @@ class _FaqTileState extends State<FaqTile> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Container(
                 height: 1.0,
-                color: Color(0xFF6BBA75),
+                color: const Color(0xFF6BBA75),
               ),
             ), 
               ListTile(
-                title: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo elit at imperdiet dui accumsan. Adipiscing tristique risus nec feugiat in fermentum posuere urna. Accumsan lacus vel facilisis volutpat. Malesuada pellentesque elit eget gravida cum sociis. Aenean euismod elementum nisi quis. Aliquet risus feugiat in ante metus dictum at tempor. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Accumsan in nisl nisi scelerisque eu ultrices vitae. A iaculis at erat pellentesque adipiscing commodo elit at. Sit amet volutpat consequat mauris nunc congue nisi vitae. Sit amet est placerat in egestas. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Tincidunt tortor aliquam nulla facilisi cras fermentum. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. At ultrices mi tempus imperdiet nulla. Mattis pellentesque id nibh tortor id aliquet lectus proin nibh. Enim sed faucibus turpis in eu mi bibendum neque."),
-              )
+                title: _htmlContent.isEmpty
+                  ? const Center(child: CircularProgressIndicator())
+                  : Html(
+                    data: _htmlContent,
+                    onLinkTap: (String? url, __, _) {
+                      if (url != null && url.isNotEmpty) {
+                        _launchURL(url);
+                      }
+                    },
+                  ),
+              ),
             ],
           ),
       ),

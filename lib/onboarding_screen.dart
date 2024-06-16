@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hsmentor/pages/pagina_principal.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:hsmentor/pages/home.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
 
   void _onIntroEnd(context) async {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const Home()),
+      MaterialPageRoute(builder: (_) => const PaginaPrincipal()),
     );
 
     final pres = await SharedPreferences.getInstance();

@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# ef migrations (for now, since we arent in production yet)
+Migrations
+
 # dotenv files
 .env
 

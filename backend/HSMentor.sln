@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6C234DDC-4F33-4600-A88A-D6BA9995DDF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSMentor", "src\HSMentor\HSMentor.csproj", "{59AA3B8E-7A25-4A61-B692-B13EF0DAB6A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{859457F0-88AD-4A39-9B14-0444B8B048D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSMentor.Test", "test\HSMentor.Test\HSMentor.Test.csproj", "{684040D1-35CA-4EF5-9C91-8A6F72EFE037}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59AA3B8E-7A25-4A61-B692-B13EF0DAB6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AA3B8E-7A25-4A61-B692-B13EF0DAB6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AA3B8E-7A25-4A61-B692-B13EF0DAB6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AA3B8E-7A25-4A61-B692-B13EF0DAB6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{684040D1-35CA-4EF5-9C91-8A6F72EFE037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684040D1-35CA-4EF5-9C91-8A6F72EFE037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{684040D1-35CA-4EF5-9C91-8A6F72EFE037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684040D1-35CA-4EF5-9C91-8A6F72EFE037}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{59AA3B8E-7A25-4A61-B692-B13EF0DAB6A1} = {6C234DDC-4F33-4600-A88A-D6BA9995DDF3}
+		{684040D1-35CA-4EF5-9C91-8A6F72EFE037} = {859457F0-88AD-4A39-9B14-0444B8B048D5}
+	EndGlobalSection
+EndGlobal

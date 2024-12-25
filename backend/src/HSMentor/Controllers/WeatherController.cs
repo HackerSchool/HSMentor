@@ -11,12 +11,12 @@ public class WeatherController(WeatherService weatherService) : ControllerBase
     private readonly WeatherService _weatherService = weatherService;
 
     [HttpPost]
-    public IActionResult CreateForecast()
+    public async Task<IActionResult> CreateForecast()
     {
         // Proccess request (get whats needed from the request, nothing in this case)
 
         // Invoke Service that fulfills the Use-Case
-        WeatherForecast weatherForecast = _weatherService.CreateForecast();
+        WeatherForecast weatherForecast = await _weatherService.CreateForecast();
 
         // Create Response Based on the result from the Service
         return CreatedAtAction(
@@ -27,23 +27,23 @@ public class WeatherController(WeatherService weatherService) : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAllForecasts()
+    public async Task<IActionResult> GetAllForecastsAsync()
     {
         // Process request
 
         // Invoke Service that fulfills the Use-Case
-        IEnumerable<WeatherForecast> forecasts = _weatherService.GetAllForecasts();
+        IEnumerable<WeatherForecast> forecasts = await _weatherService.GetAllForecasts();
 
         return Ok(GetAllForecastsResponse.FromDomain(forecasts));
     }
 
     [HttpGet("{reportId:guid}")]
-    public IActionResult GetForecast(Guid reportId)
+    public async Task<IActionResult> GetForecast(Guid reportId)
     {
         // Process request
 
         // Invoke Service that fulfills the Use-Case
-        WeatherForecast? weatherForecast = _weatherService.GetForecast(reportId);
+        WeatherForecast? weatherForecast = await _weatherService.GetForecast(reportId);
 
         // Create Response Based on the result from the Service
         return weatherForecast is null
@@ -52,12 +52,12 @@ public class WeatherController(WeatherService weatherService) : ControllerBase
     }
 
     [HttpDelete("{reportId:guid}")]
-    public IActionResult DeleteForecast(Guid reportId)
+    public async Task<IActionResult> DeleteForecast(Guid reportId)
     {
         // Process request
 
         // Invoke Service that fulfills the Use-Case
-        WeatherForecast? weatherForecast = _weatherService.DeleteForecast(reportId);
+        WeatherForecast? weatherForecast = await _weatherService.DeleteForecast(reportId);
 
         // Create Response Based on the result from the Service
         return weatherForecast is null

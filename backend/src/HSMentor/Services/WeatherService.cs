@@ -1,6 +1,7 @@
 using HSMentor.Domain;
 using HSMentor.Lib.Extensions.DI;
 using HSMentor.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace HSMentor.Services;
 
@@ -23,11 +24,11 @@ public class WeatherService(HSMentorDbContext dbContext)
         "Scorching",
     ];
 
-    public WeatherForecast CreateForecast()
+    public async Task<WeatherForecast> CreateForecast()
     {
-        WeatherForecast? previousForecast = _dbContext
+        WeatherForecast? previousForecast = await _dbContext
             .WeatherForecasts.OrderByDescending(e => e.Id) // Get the forecast with bigger GUID (to simulate the most recent one, this doesn't work irl)
-            .FirstOrDefault();
+            .FirstOrDefaultAsync();
 
         WeatherForecast weatherForecast = new()
         {
@@ -39,35 +40,36 @@ public class WeatherService(HSMentorDbContext dbContext)
         };
 
         _dbContext.Add(weatherForecast);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         return weatherForecast;
     }
 
-    public IEnumerable<WeatherForecast> GetAllForecasts()
+    public async Task<IEnumerable<WeatherForecast>> GetAllForecasts()
     {
         List<WeatherForecast> weatherForecasts = [];
 
-        WeatherForecast? curr = _dbContext
+        WeatherForecast? curr = await _dbContext
             .WeatherForecasts.OrderByDescending(e => e.Id)
-            .FirstOrDefault();
+            .FirstOrDefaultAsync();
 
         while (curr != null)
         {
             weatherForecasts.Add(curr);
-            curr = curr.PreviousForecast;
+            curr = curr.PreviousForecast; // This is a call to a proxy of WeatherForecast that triggers an entity fetch.
+            // Unfortunately, this type of fetches (lazy loading via proxy) are always made synchronously in ef
         }
 
         return weatherForecasts;
     }
 
-    public WeatherForecast? GetForecast(Guid guid)
+    public async Task<WeatherForecast?> GetForecast(Guid guid)
     {
-        return _dbContext.WeatherForecasts.Find(guid);
+        return await _dbContext.WeatherForecasts.FindAsync(guid);
     }
 
-    public WeatherForecast? DeleteForecast(Guid guid)
+    public async Task<WeatherForecast?> DeleteForecast(Guid guid)
     {
-        WeatherForecast? weatherForecast = _dbContext.WeatherForecasts.Find(guid);
+        WeatherForecast? weatherForecast = await _dbContext.WeatherForecasts.FindAsync(guid);
 
         if (weatherForecast is null)
         {
@@ -75,7 +77,7 @@ public class WeatherService(HSMentorDbContext dbContext)
         }
 
         _dbContext.WeatherForecasts.Remove(weatherForecast);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
 
         return weatherForecast;
     }

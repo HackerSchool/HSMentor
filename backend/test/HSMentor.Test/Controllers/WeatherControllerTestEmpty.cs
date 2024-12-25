@@ -3,9 +3,9 @@ using HSMentor.Test.Lib;
 
 namespace HSMentor.Test.Controllers;
 
-public class WeatherControllerTest2(HSMentorWebApplicationFactory factory) : IntegrationTest(factory)
+public class WeatherControllerTest2(HSMentorWebApplicationFactory factory)
+    : IntegrationTest(factory)
 {
-
     [Fact]
     public async Task GetWeatherForecasts()
     {
